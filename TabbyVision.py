@@ -365,11 +365,12 @@ def parse_args():
 if __name__ == '__main__':
     args = parse_args()
     data = read_table_from_file_as_list_of_dicts(args.filename)
-    type = get_file_type(args.filename)
-    name = args.output
-    save = name + "." + type
+
 
     if args.output:
+        type = get_file_type(args.filename)
+        name = args.output
+        save = name + "." + type
         save_list_of_dicts_to_file(data, save)
     if args.change:
         data = change_values_in_table(data, args.change[0], args.change[1], args.change[2])
