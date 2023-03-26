@@ -367,11 +367,7 @@ if __name__ == '__main__':
     data = read_table_from_file_as_list_of_dicts(args.filename)
 
 
-    if args.output:
-        type = get_file_type(args.filename)
-        name = args.output
-        save = name + "." + type
-        save_list_of_dicts_to_file(data, save)
+
     if args.change:
         data = change_values_in_table(data, args.change[0], args.change[1], args.change[2])
     if args.nan:
@@ -380,8 +376,10 @@ if __name__ == '__main__':
         display_table_dimensions(data)
     if args.list_columns:
         display_columns_and_types(data)
-    else:
-        display_table_as_pretty_table(data)
+    if args.output:
+        save_list_of_dicts_to_file(data, args.output)
+
+    display_table_as_pretty_table(data)
 
 
 #I'm not sure if this is the best way to do it, but it works. I'm open to suggestions. Thanks for reading.
